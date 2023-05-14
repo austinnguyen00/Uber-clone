@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import HomeScreen from './screens/HomeScreen';
 
 export default function App() {
 	return (
@@ -9,8 +10,7 @@ export default function App() {
 		// any nested components that need to access the Redux store
 		<Provider store={store}>
 			<View style={styles.container}>
-				<Text>Open up App.tsx to start working on your app!</Text>
-				<StatusBar style='auto' />
+				<HomeScreen></HomeScreen>
 			</View>
 		</Provider>
 	);
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
+		// alignItems: 'center',
+		// justifyContent: 'center',
 	},
 });
