@@ -10,9 +10,24 @@ import {
 import React from 'react';
 import tw from 'twrnc';
 import { Icon } from '@rneui/base';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '../types/navigation';
 
 const NavOptions = () => {
-	const data = [
+	// `useNavigation` is a hook which gives access to `navigation` object
+	// Use this instead of passing `navigation` prop to nested child
+	// `useNavigation()` returns the `navigation` prop of the screen it's inside
+	const navigation = useNavigation<StackNavigationProp>();
+
+	// Interface of Screen
+	interface IScreen {
+		id: string;
+		title: string;
+		image: string;
+		screen: string;
+	}
+
+	const data: IScreen[] = [
 		{
 			id: '123',
 			title: 'Get a ride',
@@ -34,7 +49,15 @@ const NavOptions = () => {
 				horizontal
 				keyExtractor={(item) => item.id}
 				renderItem={({ item }) => (
-					<TouchableOpacity style={tw`p-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40`}>
+					<TouchableOpacity
+						style={tw`p-2 pl-6 pb-8 pt-4 bg-gray-200 m-2 w-40`}
+						onPress={() => {
+							// `navigate` method allows us to navigate to another screen in the app
+							navigation.navigate(
+								item.screen === undefined ? 'HomeScreen' : item.screen
+							);
+						}}
+					>
 						<View>
 							<Image
 								style={{ width: 120, height: 120, resizeMode: 'contain' }}
