@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import tw from 'twrnc';
+import { Icon } from '@rneui/base';
 
 const NavOptions = () => {
 	const data = [
@@ -40,6 +41,24 @@ const NavOptions = () => {
 								source={{ uri: item.image }}
 							/>
 							<Text style={tw`mt-2 text-lg font-semibold`}>{item.title}</Text>
+							<Icon
+								style={tw`p-2 bg-black rounded-full w-10 mt-4`}
+								type='antdesign'
+								name='arrowright'
+								color='white'
+							></Icon>
+							{/* <Icon
+								color='#0CC'
+								containerStyle={{}}
+								disabledStyle={{}}
+								iconProps={{}}
+								iconStyle={{}}
+								name='devices'
+								onLongPress={() => console.log('onLongPress()')}
+								onPress={() => console.log('onPress()')}
+								size={40}
+								type='material'
+							/> */}
 						</View>
 					</TouchableOpacity>
 				)}
