@@ -1,18 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
+import { NavState } from '../types/navTypes';
 
 // A "Slice" is a colection of Redux reducer logic and actions for
 // a single feature in your app
 
-// Define types of the slice state
-interface navState {
-	origin: string | null;
-	destination: string | null;
-	travelTimeInformation: number | null;
-}
-
 // Initial state of our slice
-const initialState: navState = {
+const initialState: NavState = {
 	origin: null,
 	destination: null,
 	travelTimeInformation: null,
