@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
-import { NavState } from '../types/navTypes';
+import { NavState, Origin } from '../types/navTypes';
 
 // A "Slice" is a colection of Redux reducer logic and actions for
 // a single feature in your app
@@ -24,7 +24,7 @@ export const navSlice = createSlice({
 	// Reducers are functions that take current state and action as arguments
 	// and return a new state result
 	reducers: {
-		setOrigin: (state, action) => {
+		setOrigin: (state, action: PayloadAction<Origin>) => {
 			state.origin = action.payload;
 		},
 		setDestination: (state, action) => {

@@ -42,6 +42,13 @@ const HomeScreen = () => {
 					onPress={(data, details) => {
 						// console.log(data);
 						// console.log(details);
+
+						// Dispatch the location and description of the origin
+						// to the store
+						// `dispatch()` take a reducer function as an argument and
+						// `setOrigin()` is a reducer function that takes a payload
+						// as an argument and update the state in the store
+						// with new payload
 						dispatch(
 							setOrigin({
 								location: details?.geometry.location,

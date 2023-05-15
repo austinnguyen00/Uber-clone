@@ -1,13 +1,12 @@
-export interface Location {
-  lat: number;
-  lng: number;
+import { Point } from "react-native-google-places-autocomplete";
+
+export interface Origin {
+  location: Point | undefined;
+  description: string;
 }
 
 export interface NavState {
-  origin: {
-    location: Location;
-    description: string;
-  } | null;
+  origin: Origin | null;
   destination: string | null;
   travelTimeInformation: number | null;
 }
