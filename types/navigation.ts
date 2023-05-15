@@ -6,6 +6,7 @@ export type StackParamList = {
   // is specified with `undefined`
   HomeScreen: undefined;
   MapScreen: undefined;
+  RideOptionsCard: undefined;
 };
 
 export type StackNavigationProp = NativeStackNavigationProp<StackParamList>

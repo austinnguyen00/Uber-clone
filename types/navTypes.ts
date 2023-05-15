@@ -5,8 +5,13 @@ export interface Origin {
   description: string;
 }
 
+export interface Destination {
+  location: Point | undefined;
+  description: string;
+}
+
 export interface NavState {
   origin: Origin | null;
-  destination: string | null;
+  destination: Destination | null;
   travelTimeInformation: number | null;
 }

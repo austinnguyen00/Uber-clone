@@ -55,8 +55,6 @@ const HomeScreen = () => {
 								description: data.description,
 							})
 						);
-
-						dispatch(setDestination(null));
 					}}
 					query={{
 						key: GOOGLE_MAPS_APIKEY,
