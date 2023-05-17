@@ -12,6 +12,8 @@ import { Icon } from '@rneui/themed/dist/Icon';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '../types/navigation';
 import { Image } from '@rneui/themed/dist/Image';
+import { useSelector } from 'react-redux';
+import { selectTravelTimeInformation } from '../slices/navSlice';
 
 interface Car {
 	id: string;
@@ -44,6 +46,7 @@ const data: Car[] = [
 const RideOptionsCard = () => {
 	const navigation = useNavigation<StackNavigationProp>();
 	const [selected, setSelected] = useState<Car>();
+	const travelTimeInformation = useSelector(selectTravelTimeInformation);
 
 	return (
 		<SafeAreaView style={tailwind`bg-white flex-shrink`}>
@@ -57,8 +60,11 @@ const RideOptionsCard = () => {
 						type='font-awesome'
 					></Icon>
 				</TouchableOpacity>
-				<Text style={tailwind`text-center py-5 text-xl`}>Select a Ride</Text>
+				<Text style={tailwind`text-center py-5 text-xl`}>
+					Select a Ride - {travelTimeInformation?.distance?.text}
+				</Text>
 			</View>
+
 			<FlatList
 				data={data}
 				keyExtractor={(item) => item.id}
@@ -75,12 +81,13 @@ const RideOptionsCard = () => {
 						></Image>
 						<View style={tailwind`-ml-6`}>
 							<Text style={tailwind`text-xl font-semibold`}>{item.title}</Text>
-							<Text>Travel Time</Text>
+							<Text>{travelTimeInformation?.duration?.text} travel time</Text>
 						</View>
 						<Text style={tailwind`text-xl`}>$99</Text>
 					</TouchableOpacity>
 				)}
 			></FlatList>
+
 			<View>
 				<TouchableOpacity
 					style={tailwind`bg-black py-3 m-3 ${!selected ? 'bg-gray-300' : ''}`}

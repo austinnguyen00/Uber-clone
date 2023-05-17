@@ -47,5 +47,7 @@ export const { setOrigin, setDestination, setTravelTimeInformation } =
 // and returns data that is based on that state.
 export const selectOrigin = (state: RootState) => state.nav.origin;
 export const selectDestination = (state: RootState) => state.nav.destination;
+export const selectTravelTimeInformation = (state: RootState) =>
+	state.nav.travelTimeInformation;
 
 export default navSlice.reducer;

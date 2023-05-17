@@ -2,8 +2,12 @@ import { StyleSheet, Text, SafeAreaView } from 'react-native';
 import React, { useEffect, useRef } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import tw from 'twrnc';
-import { useSelector } from 'react-redux';
-import { selectOrigin, selectDestination } from '../slices/navSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	selectOrigin,
+	selectDestination,
+	setTravelTimeInformation,
+} from '../slices/navSlice';
 import MapViewDirections from 'react-native-maps-directions';
 import { GOOGLE_MAPS_APIKEY } from '@env';
 
@@ -13,11 +17,14 @@ const Map = () => {
 	// This hook take a selector function as a argument
 	const origin = useSelector(selectOrigin);
 	const destination = useSelector(selectDestination);
+	const dispatch = useDispatch();
 
 	// `useRef` returns a ref object with a single `current` property
 	// initially set to the initial value you provided.
 	const mapRef = useRef<MapView | null>(null);
 
+	// Update the zoom distance of the map according to
+	// the current origin and destination
 	useEffect(() => {
 		if (!origin || !destination) return;
 
@@ -26,6 +33,25 @@ const Map = () => {
 			edgePadding: { top: 50, right: 50, bottom: 50, left: 50 },
 		});
 	}, [origin, destination]);
+
+	// Calculate the travel time
+	useEffect(() => {
+		if (!origin || !destination) return;
+		const getDistnace = async () => {
+			// Request the distance matrix API
+			fetch(`https://maps.googleapis.com/maps/api/distancematrix/json
+					?destinations=${destination.description}
+					&origins=${origin.description}
+					&key=${GOOGLE_MAPS_APIKEY}`)
+				.then((res) => res.json())
+				.then((data) => {
+					// Get the travel time information from Distance Matrix API
+					// console.log('Data', JSON.stringify(data.rows[0]));
+					dispatch(setTravelTimeInformation(data.rows[0].elements[0]));
+				});
+		};
+		getDistnace();
+	}, [origin, destination, GOOGLE_MAPS_APIKEY]);
 
 	return (
 		<MapView
