@@ -46,5 +46,6 @@ export const { setOrigin, setDestination, setTravelTimeInformation } =
 // accepts the Redux store state (or part of the state) as an argument,
 // and returns data that is based on that state.
 export const selectOrigin = (state: RootState) => state.nav.origin;
+export const selectDestination = (state: RootState) => state.nav.destination;
 
 export default navSlice.reducer;
