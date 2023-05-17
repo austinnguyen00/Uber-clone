@@ -1,6 +1,12 @@
 import * as React from 'react';
 
-import { StyleSheet, Text, View } from 'react-native';
+import {
+	StyleSheet,
+	Text,
+	View,
+	KeyboardAvoidingView,
+	Platform,
+} from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -32,24 +38,33 @@ export default function App() {
 			<NavigationContainer>
 				{/* React Native Elements Wrapper */}
 				<SafeAreaProvider>
-					{/* `Navigator` should contain `Screen` elements as its children 
+					{/* This component is used to automatically adjust
+					view height, position, or bottom padding based on the keyboard height
+					to reamin visible while the virtual keyboard is displayed */}
+					<KeyboardAvoidingView
+						behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+						style={{ flex: 1 }}
+						keyboardVerticalOffset={Platform.OS === 'ios' ? -64 : 0}
+					>
+						{/* `Navigator` should contain `Screen` elements as its children 
 					to define the configuration for routes */}
-					<Stack.Navigator>
-						<Stack.Screen
-							name='HomeScreen'
-							component={HomeScreen}
-							options={{
-								headerShown: false,
-							}}
-						/>
-						<Stack.Screen
-							name='MapScreen'
-							component={MapScreen}
-							options={{
-								headerShown: false,
-							}}
-						/>
-					</Stack.Navigator>
+						<Stack.Navigator>
+							<Stack.Screen
+								name='HomeScreen'
+								component={HomeScreen}
+								options={{
+									headerShown: false,
+								}}
+							/>
+							<Stack.Screen
+								name='MapScreen'
+								component={MapScreen}
+								options={{
+									headerShown: false,
+								}}
+							/>
+						</Stack.Navigator>
+					</KeyboardAvoidingView>
 				</SafeAreaProvider>
 			</NavigationContainer>
 		</Provider>
