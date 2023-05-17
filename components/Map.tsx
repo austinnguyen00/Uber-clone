@@ -39,15 +39,22 @@ const Map = () => {
 		if (!origin || !destination) return;
 		const getDistnace = async () => {
 			// Request the distance matrix API
-			fetch(`https://maps.googleapis.com/maps/api/distancematrix/json
-					?destinations=${destination.description}
-					&origins=${origin.description}
-					&key=${GOOGLE_MAPS_APIKEY}`)
+			fetch(
+				`https://maps.googleapis.com/maps/api/distancematrix/json?destinations=${destination.description}&origins=${origin.description}&key=${GOOGLE_MAPS_APIKEY}`
+			)
 				.then((res) => res.json())
 				.then((data) => {
 					// Get the travel time information from Distance Matrix API
 					// console.log('Data', JSON.stringify(data.rows[0]));
 					dispatch(setTravelTimeInformation(data.rows[0].elements[0]));
+				})
+				.catch(function (error) {
+					console.log(
+						'There has been a problem with your fetch operation: ' +
+							error.message
+					);
+					// ADD THIS THROW error
+					throw error;
 				});
 		};
 		getDistnace();
