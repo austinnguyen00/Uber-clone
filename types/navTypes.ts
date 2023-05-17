@@ -11,9 +11,9 @@ export interface Destination {
 }
 
 export interface TravelTimeInformation {
-  distance: TravelTimeInformationObject | null;
-  duration: TravelTimeInformationObject | null;
-  duration_in_traffic: TravelTimeInformationObject | null;
+  distance: TravelTimeInformationObject;
+  duration: TravelTimeInformationObject;
+  duration_in_traffic: TravelTimeInformationObject;
   status: string;
 }
 

@@ -43,6 +43,9 @@ const data: Car[] = [
 	},
 ];
 
+// A variable for price calculation formula
+const SURGE_CHARGE_RATE = 1.4;
+
 const RideOptionsCard = () => {
 	const navigation = useNavigation<StackNavigationProp>();
 	const [selected, setSelected] = useState<Car>();
@@ -83,12 +86,25 @@ const RideOptionsCard = () => {
 							<Text style={tailwind`text-xl font-semibold`}>{item.title}</Text>
 							<Text>{travelTimeInformation?.duration?.text} travel time</Text>
 						</View>
-						<Text style={tailwind`text-xl`}>$99</Text>
+						<Text style={tailwind`text-xl`}>
+							{/* Intl.NumberFormat object enables language-sensitive number formatting. */}
+							{new Intl.NumberFormat('en', {
+								style: 'currency',
+								currency: 'AUD',
+							}).format(
+								// Simple algorithm to calculate the travel price
+								(travelTimeInformation?.duration
+									? travelTimeInformation.duration.value *
+									  SURGE_CHARGE_RATE *
+									  item.multiplier
+									: 0) / 100
+							)}
+						</Text>
 					</TouchableOpacity>
 				)}
 			></FlatList>
 
-			<View>
+			<View style={tailwind`mt-auto border-t border-gray-200`}>
 				<TouchableOpacity
 					style={tailwind`bg-black py-3 m-3 ${!selected ? 'bg-gray-300' : ''}`}
 				>
