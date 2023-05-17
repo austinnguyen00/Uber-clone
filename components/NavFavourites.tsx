@@ -14,17 +14,17 @@ const data = [
 		id: '123',
 		icon: 'home',
 		location: 'Home',
-		destination: 'Code Street, London, UK',
+		destination: 'Gillon st, Perth, AUS',
 	},
 	{
 		id: '456',
 		icon: 'briefcase',
 		location: 'Work',
-		destination: 'London Eye, London, UK',
+		destination: 'Hay st, Perth, AUS',
 	},
 ];
 
-const NavFavourties = () => {
+const NavFavourites = () => {
 	return (
 		<FlatList
 			data={data}
@@ -51,6 +51,6 @@ const NavFavourties = () => {
 	);
 };
 
-export default NavFavourties;
+export default NavFavourites;
 
 const styles = StyleSheet.create({});

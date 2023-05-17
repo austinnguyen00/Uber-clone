@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { setDestination } from '../slices/navSlice';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '../types/navigation';
-import NavFavourties from './NavFavourties';
+import NavFavourites from './NavFavourites';
 import { Icon } from '@rneui/themed/dist/Icon';
 
 const NavigateCard = () => {
@@ -44,7 +44,7 @@ const NavigateCard = () => {
 					></GooglePlacesAutocomplete>
 				</View>
 
-				<NavFavourties />
+				<NavFavourites />
 			</View>
 			<View
 				style={tw`flex-row bg-white justify-evenly py-2 mt-auto border-t border-gray-100`}
