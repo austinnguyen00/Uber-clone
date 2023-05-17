@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { setDestination } from '../slices/navSlice';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '../types/navigation';
+import NavFavourties from './NavFavourties';
 
 const NavigateCard = () => {
 	const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const NavigateCard = () => {
 						enablePoweredByContainer={false}
 						minLength={2}
 						nearbyPlacesAPI='GooglePlacesSearch'
+						debounce={400}
 						onPress={(data, details = null) => {
 							dispatch(
 								setDestination({
@@ -40,6 +42,8 @@ const NavigateCard = () => {
 						}}
 					></GooglePlacesAutocomplete>
 				</View>
+
+				<NavFavourties />
 			</View>
 		</SafeAreaView>
 	);
